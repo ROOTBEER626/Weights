@@ -19,15 +19,6 @@ class User {
   }
 }
 
-//helper function to get the data of a user 
-function getData(user_id) {
-
-  user = pool.query('SELECT * FROM users WHERE user_id = $1', [user_id])
-
-  const current_user = new User(user.user_id,user.username, user.password, user.email, user.created_on, user.last_login)
-
-  return current_user
-}
 //In a production enviornment, you would want to put your configuration
 //details in a seperate file with restrictive permissions that is not accessible 
 //from version control
@@ -67,12 +58,9 @@ const createUser = (request, response) => {
 
 const updateUser = (request, response) => {
   const user_id = parseInt(request.params.user_id)
-  //const current_user = getData(user_id)
   const {username, email } = request.body
 
   pool.query(
-    //'UPDATE users SET username = $1, password = $3, email = $2, created_on = $4 WHERE user_id = $5',
-    //[username, email, current_user.password, current_user.created_on, current_user.user_id],
     'UPDATE users SET username = $1, email = $2 WHERE user_id = $3',
     [username, email, user_id],
     (error, results) => {
@@ -96,6 +84,36 @@ const deleteUser = (request, response) => {
     })
 }
 
+//helper class to create an instance of lift
+class Lift {
+  constructor(lift_id, user_id, created_on, weight, reps, sets) {
+    this.lift_id = lift_id;
+    this.user_id = user_id;
+    this.created_on = created_om;
+    this.weight = weight;
+    this.reps = reps;
+    this.sets = sets
+  }
+}
+
+const getLifts = (request, response) => {
+  pool.query('SELECT * FROM lifts ORDER BY created_on DESC', (error, results) => {
+    if(error) {
+      throw error
+    }
+    response.status(200).json(results.rows)
+  })
+}
+
+//get all lifts belonging to single user
+
+//get all lifts from certain date
+
+//add lift
+
+//delete lift
+
+//edit lift
 module.exports = {
   getUsers,
   getUserById,
