@@ -22,7 +22,6 @@ class User {
 //In a production enviornment, you would want to put your configuration
 //details in a seperate file with restrictive permissions that is not accessible 
 //from version control
-//
 const getUsers = (request, response) => {
 
   pool.query('SELECT * FROM users ORDER BY user_id ASC', (error, results) => {
