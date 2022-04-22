@@ -6,9 +6,9 @@ function App() {
   const [data, setData] = React.useState(null);
 
   React.useEffect(() => {
-    fetch('/api')
-    .then((res) => res.json())
-    .then((data) => setData(data.message));
+    fetch('/users')
+    .then((response) => response.json())
+    .then((data) => setData(data.json))
   }, []);
 
   return (
