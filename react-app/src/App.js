@@ -1,24 +1,15 @@
-import React from "react";
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
-  const [data, setData] = React.useState(null);
+ import { Routes, Route } from 'react-router-dom'
+ import Users from './components/users'
+ import User from './components/user'
 
-  React.useEffect(() => {
-    fetch('/users')
-    .then((response) => response.json())
-    .then((data) => setData(data.json))
-  }, []);
+ function App() {
+   return (
+     <Routes>
+       <Route path='/users' element={<Users />} />
+       <Route path='/users/:id' element={<User />} />
+     </Routes>
+   )
+ }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>{!data ? "No data" : data}</p>
-      </header>
-    </div>
-  );
-}
-
-export default App;
+ export default App;

@@ -1,10 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-//import * as ReactDOM from 'react-dom/client'
 import './index.css';
 import App from './App';
-//import reportWebVitals from './reportWebVitals';
-import Users from './components/users'
+import  {  BrowserRouter  }  from  'react-router-dom'
 
 /* Attempt to change to the new API introduced in react 18: getting error container is not dom item
 ReactDOM.createRoot(
@@ -14,15 +12,12 @@ ReactDOM.createRoot(
   document.getElementById("root")
 );
 */
-//const container = document.getElementById('app');
-// Create a root.
-//const root = ReactDOM.createRoot(container);
-// Initial render: Render an element to the root.
-//root.render(<App/>);
 
 ReactDOM.render(
   <React.StrictMode>
-    <Users />
+    <BrowserRouter>
+      < App />
+    </BrowserRouter>
   </React.StrictMode>,
   document.getElementById('root')
 );

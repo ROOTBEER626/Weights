@@ -13,6 +13,7 @@ const app = express();
 //)
 
 app.use("/users/", require("./routes/userRoutes"));
+app.use("/users/:id", require("./routes/userRoutes"));
 
 /*
 app.get('/something', (req, res) => {
@@ -31,7 +32,7 @@ app.get('/users', function(req,res,next)  {
 });
 ///
 
-app.get('/users/:user_id', db.getUserById)
+
 app.post('/users', db.createUser)
 app.post('/users/:user_id', db.updateUser)
 app.delete('/users/:user_id', db.deleteUser)

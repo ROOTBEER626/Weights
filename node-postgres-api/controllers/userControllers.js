@@ -24,25 +24,21 @@ exports.getUsers = (req, res) => {
     if(error) {
       throw error;
     }
-    //console.log(results.rows); //looks good data is where it should be
-    userList = []
-    /*for(row in results.rows) {
-      console.log(row);
-      const data = JSON.parse(row);
-      console.log("data:");
-      console.log(data);
-      userList.push(data);
-    }
-*/
     res.json({
-      //userList: userList
       userList: results.rows
     })
   })
 }
 
-exports.userController = (req, res) => {
-  res.json({
-    userList: ["user1", "user2"]
+exports.getUserById = (req, res) => {
+  const id = parseInt(req.params.id);
+
+  pool.query('SELECT * FROM users WHERE user_id = $1', [id], (error, results) => {
+    if(error) {
+      throw error
+    }
+    res.json({
+      userList: results.rows
+    })
   })
 }
